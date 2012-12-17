@@ -7,7 +7,7 @@ case "${1:-''}" in
             echo "Selenium is already running."
         else
             export DISPLAY=:99
-            java -jar <%= node["selenium"]["lib"] %>/selenium-server-standalone-<%= node["selenium"]["version"] %>.jar > <%= node["selenium"]["log"]%>/selenium-output.log 2> <%=node["selenium"]["log"]%>/selenium-error.log & echo $! > /tmp/selenium.pid
+            java -jar <%= node["selenium"]["lib"] %>/<%= node["selenium"]["jar"] %> > <%= node["selenium"]["log"]%>/selenium-output.log 2> <%=node["selenium"]["log"]%>/selenium-error.log & echo $! > /tmp/selenium.pid
             echo "Starting Selenium..."
 
             error=$?
@@ -41,7 +41,7 @@ case "${1:-''}" in
             test -f /tmp/selenium.pid && rm -f /tmp/selenium.pid
             sleep 1
             export DISPLAY=:99
-            java -jar <%= node["selenium"]["lib"] %>/selenium-server-standalone-<%= node["selenium"]["version"]%>.jar > <%= node["selenium"]["log"] %>/selenium-output.log 2> <%= node["selenium"]["log"] %>/selenium-error.log & echo $! > /tmp/selenium.pid
+            java -jar <%= node["selenium"]["lib"] %>/<%= node["selenium"]["jar"]%> > <%= node["selenium"]["log"] %>/selenium-output.log 2> <%= node["selenium"]["log"] %>/selenium-error.log & echo $! > /tmp/selenium.pid
             echo "Reload Selenium..."
         else
             echo "Selenium isn't running..."
